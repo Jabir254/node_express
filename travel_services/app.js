@@ -33,4 +33,12 @@ app.use((err, req, res, next) => {
   res.send("500 - Server Error");
 });
 
-app.listen(port, () => console.log(`started on cort ${port}`));
+const fortunes = [
+"Conquer your fears or they will conquer you.",
+"Rivers need springs.",
+ "Do not fear what you don't know.",
+ "You will have a pleasant surprise.",
+ "Whenever possible, keep it simple.",
+]
+
+app.listen(port, () => console.log(`started on port ${port}`));
