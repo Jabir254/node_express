@@ -17,8 +17,10 @@ app.use(express.static(__dirname + '/public'))
 
 app.get("/", (req, res) => res.render('home'));
 
-app.get('/about', (req, res) => res.render('about'))
-
+app.get('/', (req, res) => {
+  const randomFortunes = fortunes[Math.floor(Math.random() * fortunes.length)]
+  res.render('about', {fortune: randomFortunes})
+})
 app.use((req, res) => {
   res.type("text/plain");
   res.status(404);
