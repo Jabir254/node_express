@@ -22,6 +22,6 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", handlers.home);
 app.get("/about", handlers.about);
 app.use(handlers.notFound);
-app.use(handles.serverError);
+app.use(handlers.serverError);
 
 app.listen(port, () => console.log(`started on port ${port}`));

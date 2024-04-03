@@ -8,5 +8,6 @@ const fortuneCookies = [
 
 module.exports = getFortune = () => {
   const idx = Math.floor(Math.random() * fortuneCookies.length);
+  console.log(fortuneCookies);
   return fortuneCookies[idx];
 };
