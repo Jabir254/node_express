@@ -1,6 +1,6 @@
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
-const fortune = require("./fortune.js");
+const fortune = require("./lib/fortune.js");
 const handlers = require("./lib/handlers.js");
 
 const app = express();
@@ -24,4 +24,8 @@ app.get("/about", handlers.about);
 app.use(handlers.notFound);
 app.use(handlers.serverError);
 
-app.listen(port, () => console.log(`started on port ${port}`));
+if (require.main === module) {
+  app.listen(port, () => console.log(`started on port ${port}`));
+} else {
+  module.exports = app;
+}

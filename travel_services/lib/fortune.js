@@ -6,8 +6,7 @@ const fortuneCookies = [
   "Whenever possible, keep it simple.",
 ];
 
-module.exports = getFortune = () => {
+exports.getFortune = () => {
   const idx = Math.floor(Math.random() * fortuneCookies.length);
-  console.log(fortuneCookies);
   return fortuneCookies[idx];
 };
