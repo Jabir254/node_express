@@ -1,6 +1,8 @@
 const express = require("express");
 const expressHandlebars = require("express-handlebars");
 const fortune = require('./fortune.js')
+const handlers = require('./lib/handlers.js')
+
 
 const app = express();
 
@@ -16,25 +18,13 @@ const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/public'))
 
 
-app.get("/", (req, res) => res.render('home'));
 
-app.get('/about', (req, res) => {
-  res.render('about', {fortune: fortune.getFortune() })
-})
 
-// custom 404 page
-app.use((req, res) => {
-  res.type("text/plain");
-  res.status(404);
-  res.send("404 - Not found");
-});
+app.get('/', handlers.home)
+app.get('/about', handlers.about)
+app.use(handlers.notFound)
+app.use(handles.serverError)
 
-// custom 500 page
-app.use((err, req, res, next) => {
-  console.error(err.message);
-  res.type("text/plain");
-  res.status(500);
-  res.send("500 - Server Error");
-});
+
 
 app.listen(port, () => console.log(`started on port ${port}`));
