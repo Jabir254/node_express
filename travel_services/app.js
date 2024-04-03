@@ -1,26 +1,28 @@
-const express = require("express");
-const expressHandlebars = require("express-handlebars");
-const fortune = require("./lib/fortune.js");
-const handlers = require("./lib/handlers.js");
+/* eslint-disable no-console */
+/* eslint-disable import/extensions */
+const express = require('express');
+const expressHandlebars = require('express-handlebars');
+const fortune = require('./lib/fortune.js');
+const handlers = require('./lib/handlers.js');
 
 const app = express();
 
 // configure Handlebars view engine
 app.engine(
-  "handlebars",
+  'handlebars',
   expressHandlebars.engine({
-    defaultLayout: "main",
-  })
+    defaultLayout: 'main',
+  }),
 );
 
-app.set("view engine", "handlebars");
+app.set('view engine', 'handlebars');
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(`${__dirname}/public`));
 
-app.get("/", handlers.home);
-app.get("/about", handlers.about);
+app.get('/', handlers.home);
+app.get('/about', handlers.about);
 app.use(handlers.notFound);
 app.use(handlers.serverError);
 
