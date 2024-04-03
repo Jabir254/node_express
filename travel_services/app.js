@@ -11,6 +11,7 @@ const app = express();
 app.engine(
   'handlebars',
   expressHandlebars.engine({
+    extname: '.hbs',
     defaultLayout: 'main',
   }),
 );
