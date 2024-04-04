@@ -33,7 +33,7 @@ app.post("/newsletter-signup/process", handlers.newsletterSignupProcess);
 app.get("/newsletter-signup/thank-you", handlers.newsletterSignupThankYou);
 
 app.use(handlers.notFound);
-//app.use(handlers.serverError);
+app.use(handlers.serverError);
 
 if (require.main === module) {
   app.listen(port, () => console.log(`started on port ${port}`));
