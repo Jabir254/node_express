@@ -4,7 +4,7 @@ const express = require('express');
 const expressHandlebars = require('express-handlebars');
 const fortune = require('./lib/fortune.js');
 const handlers = require('./lib/handlers.js');
-
+const bodyParser = require('body-parser')
 const app = express();
 
 // configure Handlebars view engine
@@ -20,6 +20,8 @@ app.set('view engine', 'handlebars');
 
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use(express.static(`${__dirname}/public`));
 
 app.get('/', handlers.home);
@@ -31,5 +33,5 @@ if (require.main === module) {
   app.listen(port, () => console.log(`started on port ${port}`));
 } else {
   module.exports = app;
-  
+
 }
