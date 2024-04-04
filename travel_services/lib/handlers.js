@@ -17,5 +17,6 @@ exports.newsletterSignupProcess = (req, res) => {
   console.log("Email (from visible form field): " + req.body.email);
   res.redirect(303, "/newsletter-signup/thank-you");
 };
+
 exports.newsletterSignupThankYou = (req, res) =>
   res.render("newsletter-signup-thank-you");
