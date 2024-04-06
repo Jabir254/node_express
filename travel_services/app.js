@@ -5,6 +5,7 @@ const expressHandlebars = require("express-handlebars");
 const fortune = require("./lib/fortune.js");
 const handlers = require("./lib/handlers.js");
 const bodyParser = require("body-parser");
+const multiparty = require("multiparty");
 const app = express();
 
 // configure Handlebars view engine
@@ -36,6 +37,17 @@ app.get("/newsletter-signup/thank-you", handlers.newsletterSignupThankYou);
 //endpoint for newsletter
 app.get("/newsletter", handlers.newsletter);
 app.post("/api/newsletter-signup", handlers.api.newsletterSignup);
+
+//fileupload
+app.post("/contest/vacation_photo/:year/:month", (req, res) => {
+  const form = new multiparty.Form();
+  form.parse(req, (err, fields, files) => {
+    if (err) return res.status(500).send({ error: err.message });
+  });
+  handlers.vacationPhotoContestProcess(req, res, fields, files);
+});
+
+//handling error
 app.use(handlers.notFound);
 app.use(handlers.serverError);
 
