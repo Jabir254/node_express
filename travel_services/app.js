@@ -7,6 +7,8 @@ const handlers = require("./lib/handlers.js");
 const bodyParser = require("body-parser");
 const multiparty = require("multiparty");
 const app = express();
+const { credentials } = require("./config.js");
+const cookieParser = require("cookie-parser");
 
 // configure Handlebars view engine
 app.engine(
@@ -25,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/public`));
+app.use(cookieParser(credentials.cookieSecret));
 
 app.get("/", handlers.home);
 app.get("/about", handlers.about);
