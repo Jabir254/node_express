@@ -60,6 +60,15 @@ app.post("/contest/vacation_photo/:year/:month", (req, res) => {
   handlers.vacationPhotoContestProcess(req, res, fields, files);
 });
 
+//API
+app.get("/api/vacations", handlers.getVacationsApi);
+app.get("/api/vacation/:sku", handlers.getVacationBySkuApi);
+app.post(
+  "/api/vacation/:sku/notify-when-in-season",
+  handlers.addVacationInSeasonListenerApi
+);
+app.delete("/api/vacation/:sku", handlers.requestDeleteVacationApi);
+
 //handling error
 app.use(handlers.notFound);
 app.use(handlers.serverError);
